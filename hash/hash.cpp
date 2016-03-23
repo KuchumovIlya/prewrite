@@ -103,6 +103,14 @@ void init_hash()
 			pow_p[k][i] = mul(pow_p[k][i - 1], pow_p[k][1]);
 }
 
+struct HashInitializer
+{
+	HashInitializer()
+	{
+		init_hash();
+	}
+} hash_initializer;
+
 struct Hash
 {
 	int h1, h2;
@@ -166,8 +174,6 @@ int main()
 
 	string s = "abacaba";
 	int n = (int)s.length();
-
-	init_hash();
 
 	Hash pref_sum[N];
 	for (int i = 0; i < n; i++)
