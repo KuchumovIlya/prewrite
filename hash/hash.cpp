@@ -103,14 +103,6 @@ void init_hash()
 			pow_p[k][i] = mul(pow_p[k][i - 1], pow_p[k][1]);
 }
 
-struct HashInitializer
-{
-	HashInitializer()
-	{
-		init_hash();
-	}
-} hash_initializer;
-
 struct Hash
 {
 	int h1, h2;
@@ -136,7 +128,7 @@ struct Hash
 	{
 		if (h1 != other.h1)
 			return h1 < other.h1;
-		return h2 > other.h2;
+		return h2 < other.h2;
 	}
 
 	Hash operator + (const Hash &other) const
@@ -157,7 +149,6 @@ struct Hash
 	}
 };
 
-
 Hash get_h(Hash pref_sum[], int l, int r, int n)
 {
 	Hash res = pref_sum[r];
@@ -171,6 +162,8 @@ int main()
 #ifdef LOCAL
 	freopen ("input.txt", "r", stdin);
 #endif
+
+	init_hash();
 
 	string s = "abacaba";
 	int n = (int)s.length();
